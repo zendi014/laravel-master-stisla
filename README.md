@@ -14,7 +14,7 @@ Laravel-Starter-App is a boilerplate project based on Laravel Framework that you
 
 ## Command
 - Create Controller `php artisan make:controller ControllerName --resource`
-- Create Model `php artisan make:model ModelName --m`
+- Create Model `php artisan make:model ModelName --m` (config table fields in `app/Models` and `database/migration` )
 
 
 ## License
