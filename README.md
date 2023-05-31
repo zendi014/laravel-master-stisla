@@ -12,6 +12,11 @@ Laravel-Starter-App is a boilerplate project based on Laravel Framework that you
 - Run `php artisan serve`
 - Open the browser and type `http://localhost:8000`
 
+## Command
+- Create Controller `php artisan make:controller ControllerName --resource`
+- Create Model `php artisan make:model ModelName --m`
+
+
 ## License
 
 The Laravel8-Starter-App is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
