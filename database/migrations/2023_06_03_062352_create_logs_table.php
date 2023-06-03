@@ -13,17 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('logs', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->string('name');
-            $table->string('type');
-            $table->string('author_name');
-            $table->integer('year');
+            $table->string('current_data');
+            $table->string('existing_data')->nullable()->default(null);
             $table->string('created_by');
 
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at')->nullable()->default(null);
+            $table->timestamps();
             $table->softDeletes();
         });
     }
@@ -35,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('logs');
     }
 };

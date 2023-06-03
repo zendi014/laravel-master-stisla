@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Operator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Datatables;
+use Auth;
 
-use App\Models\{Book};
+use App\Models\Book;
+use App\Http\Controllers\LogController;
 
 class BookController extends Controller
 {
@@ -89,16 +91,23 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $create = Book::create(
-            [
-                'name' => $request['name'],
-                'type' => $request['type'],
-                'author_name' => $request['author_name'],
-                'year' => $request['year']
-            ]
-        );
+        $data = [
+            'name' => $request['name'],
+            'type' => $request['type'],
+            'author_name' => $request['author_name'],
+            'year' => $request['year'],
+            'created_by' => Auth::id()
+        ];
+
+        $create = Book::create($data);
 
         if($create){
+            LogController::store([
+                    'current_data' => json_encode($data),
+                    'existing_data' => null,
+                    'created_by' => Auth::id()
+            ]);
+
             return response()
                 ->json([
                     "status" => 200,
