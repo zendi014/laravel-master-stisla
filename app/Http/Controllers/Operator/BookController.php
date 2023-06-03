@@ -56,13 +56,13 @@ class BookController extends Controller
                     return '
                         <button class="btn btn-primary btn-action mr-1" 
                             data-toggle="tooltip" title="" data-original-title="Edit"
-                            onclick="edit('.$row->id.')">
+                            onclick="edit(`'.$row->id.'`)">
                             <i class="fas fa-pencil-alt"></i>
                         </button>
                         <button  class="btn btn-danger btn-action trigger--fire-modal-2" 
                             data-toggle="tooltip" title="" 
                             data-original-title="Delete"
-                            onclick="destroy('.$row->id.')">
+                            onclick="destroy(`'.$row->id.'`)">
                             <i class="fas fa-trash"></i>
                         </button>
                     ';
@@ -147,16 +147,23 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update = Book::where("id", $id)->update(
-            [
-                'name' => $request['name'],
-                'type' => $request['type'],
-                'author_name' => $request['author_name'],
-                'year' => $request['year']
-            ]
-        );
+        $existing_data = Book::where("id", $id)->first();
+        $current_data = [
+            'name' => $request['name'],
+            'type' => $request['type'],
+            'author_name' => $request['author_name'],
+            'year' => $request['year']
+        ];
+
+        $update = Book::where("id", $id)->update($current_data);
 
         if($update){
+            LogController::store([
+                'current_data' => json_encode($current_data, true),
+                'existing_data' => json_encode($existing_data->getAttributes(), true),
+                'created_by' => Auth::id()
+            ]);
+
             return response()
                 ->json([
                     "status" => 200,

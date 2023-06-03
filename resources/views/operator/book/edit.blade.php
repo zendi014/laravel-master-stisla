@@ -72,7 +72,7 @@
                     <div class="col-sm-6 col-6">
                         <button type="button" 
                                 class="btn btn-success btn-block float-right" 
-                                onclick="update({{$data['id']}});">
+                                onclick="update(`{{$data['id']}}`);">
                                 Submit
                         </button>
                     </div>

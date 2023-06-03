@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('logs', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->string('current_data');
-            $table->string('existing_data')->nullable()->default(null);
+            $table->string('current_data', 2000);
+            $table->string('existing_data', 2000)->nullable()->default(null);
             $table->string('created_by');
 
             $table->timestamps();
