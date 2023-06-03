@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use SoftDeletes;
-use UuidTrait;
+use App\Models\Concerns\UuidTrait;
 
 class Book extends Model
 {
