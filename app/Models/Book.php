@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 use SoftDeletes;
+use UuidTrait;
 
 class Book extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, UuidTrait;
 
     protected $table = 'books';
 
@@ -21,4 +23,5 @@ class Book extends Model
         'author_name',
         'year'
     ];
+    // book_name, year, category, stock, isbn, author_id, publisher_id, location_id, rack_id 
 }

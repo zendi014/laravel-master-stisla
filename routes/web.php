@@ -42,6 +42,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
 
 Route::prefix('operator')->middleware(['auth'])->group(function () {
+
     Route::controller(BookController::class)->group(function () { 
         // run php artisan make:controller BookController --resource
         //  run php artisan make:model Book -m
@@ -57,6 +58,7 @@ Route::prefix('operator')->middleware(['auth'])->group(function () {
             Route::get('destroy/{id}', 'destroy')->name('operator.book.destroy');
         });
     }); 
+    
 });
 
 
